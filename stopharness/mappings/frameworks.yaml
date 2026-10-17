@@ -1,0 +1,79 @@
+# Mapping layer: jurisdiction-neutral controls -> framework provisions.
+# Relations (deliberately weak):
+#   evidence_relevant_to  - the control's measured result is evidence an assessor may use for the provision
+#   partially_addresses   - covers one element of a multi-element provision
+# A mapping NEVER means "passing this control satisfies the provision".
+# source_check:
+#   source_text - the cited paragraph was read in the framework text during this project
+#   secondary_source - the cited provision matches a published secondary summary, not the official text; confirm before relying on it
+#   to_verify   - cited from working knowledge; confirm against the current official text before relying on it
+frameworks:
+  mas_airg:
+    name: MAS Guidelines on AI Risk Management (final, 7 Oct 2026)
+    jurisdiction: Singapore
+  eu_ai_act:
+    name: EU AI Act (Regulation (EU) 2024/1689)
+    jurisdiction: European Union
+  iso_42001:
+    name: ISO/IEC 42001:2023 AI management system
+    jurisdiction: International (voluntary standard)
+  nist_ai_rmf:
+    name: NIST AI Risk Management Framework 1.0
+    jurisdiction: United States (voluntary)
+  imda_mgf:
+    name: IMDA Model AI Governance Framework for Agentic AI (v1.5, 20 May 2026, updated 5 June 2026)
+    jurisdiction: Singapore (voluntary)
+
+mappings:
+  CTL-STOP-003:   # cessation
+    - {framework: mas_airg, ref: "5.3 and fn 29", relation: evidence_relevant_to, source_check: source_text,
+       note: "High-risk use cases: contingency plans, regularly tested, and for AI with kill switches clear activation protocols that are tested regularly. Applies where the FI has assessed the use case as high risk."}
+    - {framework: mas_airg, ref: "5.23(b)", relation: evidence_relevant_to, source_check: source_text,
+       note: "Under incident and issue management: for high-risk materiality AI, consider kill switches or override mechanisms to rapidly deactivate the system. MAS does not require a kill switch as such."}
+    - {framework: mas_airg, ref: "5.9", relation: partially_addresses, source_check: source_text,
+       note: "Human oversight, esp. 5.9(b) authority and ability to intervene. The control tests the technical effect of an intervention, not roles or escalation design."}
+    - {framework: eu_ai_act, ref: "Art. 14(4)(e)", relation: evidence_relevant_to, source_check: source_text,
+       note: "Overseers able to intervene in the operation of the high-risk AI system or interrupt it through a stop button or similar procedure that allows it to come to a halt in a safe state."}
+    - {framework: nist_ai_rmf, ref: "MANAGE 2.4", relation: evidence_relevant_to, source_check: secondary_source,
+       note: "Mechanisms in place and applied, with responsibilities assigned and understood, to supersede, disengage or deactivate AI systems whose performance or outcomes are inconsistent with intended use. (Text quoted via a secondary site; NIST AI 100-1 is public domain.)"}
+    - {framework: iso_42001, ref: "Annex A, A.6.2.6", relation: partially_addresses, source_check: secondary_source,
+       note: "AI system operation and monitoring: define and document the elements for ongoing operation (per a secondary summary; confirm against the standard)."}
+    - {framework: imda_mgf, ref: "2.3.3 Continuous testing and monitoring (pp. 43-44)", relation: evidence_relevant_to, source_check: source_text,
+       note: "Reporting and failsafe mechanisms so the organisation can intervene in real time and stop the agent workflow; higher-priority alerts may require temporarily halting execution; termination and fallback to be considered for catastrophic malfunction or compromise."}
+  CTL-STOP-004:   # latency
+    - {framework: mas_airg, ref: "5.14(a)", relation: partially_addresses, source_check: source_text,
+       note: "Agreed performance thresholds. Applies only if the organisation has adopted a stop-latency threshold with a traceable source."}
+    - {framework: mas_airg, ref: "5.3 and fn 29", relation: evidence_relevant_to, source_check: source_text,
+       note: "Plans to be operationally feasible under a range of operating conditions: latency under load tests this for activation."}
+    - {framework: mas_airg, ref: "5.23(a)", relation: partially_addresses, source_check: source_text,
+       note: "Ongoing monitoring with defined metrics and thresholds. Latency is one candidate metric; 5.23(a) also expects tool and action paths of agents to be monitored."}
+    - {framework: eu_ai_act, ref: "Art. 15", relation: partially_addresses, source_check: source_text,
+       note: "Robustness. Art. 15(4) requires resilience to errors, faults or inconsistencies and allows backup or fail-safe plans; stop behaviour under load is one aspect, and the Article is broader."}
+    - {framework: nist_ai_rmf, ref: "MANAGE 4.1", relation: partially_addresses, source_check: secondary_source,
+       note: "Post-deployment monitoring plans, including appeal and override, decommissioning, incident response, recovery and change management. (Secondary site.)"}
+    - {framework: imda_mgf, ref: "2.3.2 Before deploying, test agents (pp. 38-39)", relation: partially_addresses, source_check: source_text,
+       note: "Testing across conditions agents may encounter, repeated for stability. The framework does not name stop latency; this is a mapping by purpose."}
+  CTL-STOP-005:   # failure resilience
+    - {framework: mas_airg, ref: "5.3 and fn 29", relation: evidence_relevant_to, source_check: source_text,
+       note: "Contingency plans: behaviour when the control path itself fails."}
+    - {framework: mas_airg, ref: "5.23(b)", relation: evidence_relevant_to, source_check: source_text,
+       note: "Override mechanisms must still work, or fail safe, when degraded."}
+    - {framework: eu_ai_act, ref: "Art. 15(4)", relation: evidence_relevant_to, source_check: source_text,
+       note: "Resilience to errors, faults or inconsistencies in the system or its environment; robustness may be achieved through technical redundancy, including backup or fail-safe plans."}
+    - {framework: nist_ai_rmf, ref: "MANAGE 2.4", relation: evidence_relevant_to, source_check: secondary_source,
+       note: "Mechanisms in place and applied, with responsibilities assigned and understood, to supersede, disengage or deactivate AI systems whose performance or outcomes are inconsistent with intended use. (Text quoted via a secondary site; NIST AI 100-1 is public domain.)"}
+    - {framework: iso_42001, ref: "Annex A, A.6.2.6", relation: partially_addresses, source_check: secondary_source,
+       note: "AI system operation and monitoring: define and document the elements for ongoing operation (per a secondary summary; confirm against the standard)."}
+    - {framework: imda_mgf, ref: "2.3.3 Continuous testing and monitoring (p. 43)", relation: evidence_relevant_to, source_check: source_text,
+       note: "Failsafe mechanisms for agent failures or unexpected behaviour; termination and fallback solutions for catastrophic malfunction."}
+
+# Evidence-handling properties of the harness itself (not control results).
+evidence_mappings:
+  - {framework: mas_airg, ref: "5.17", relation: evidence_relevant_to, source_check: source_text,
+     note: "Documentation sufficient for independent replication: the bundle holds raw events, configuration, thresholds with sources."}
+  - {framework: mas_airg, ref: "5.19 and 5.24", relation: evidence_relevant_to, source_check: source_text,
+     note: "Independent validation and re-validation: a repeatable, tool-generated test an independent party can rerun."}
+  - {framework: mas_airg, ref: "5.23(d)", relation: partially_addresses, source_check: source_text,
+     note: "Logging, including enhanced agent logging. The harness reads the target's logs; it does not provide them."}
+  - {framework: eu_ai_act, ref: "Art. 12", relation: partially_addresses, source_check: source_text,
+     note: "Record-keeping: high-risk systems must technically allow automatic recording of events over their lifetime. The harness depends on the target's own logging."}
