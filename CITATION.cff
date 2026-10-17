@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "ctl-stop-harness"
+type: software
+version: 0.2.1
+date-released: 2026-10-17
+license: Apache-2.0
+repository-code: "https://github.com/nvns10/ctl-stop-harness"
+doi: 10.5281/zenodo.23436264
+abstract: >-
+  Open-source, auditor-side conformance harness for testing whether an agentic
+  AI system's stop mechanism works (cessation, latency, failure resilience),
+  producing signed evidence bundles. Proof of concept; targets are synthetic.
+authors:
+  - family-names: Sundaresan
+    given-names: Naveen
+    orcid: "https://orcid.org/0009-0001-4841-4611"
+references:
+  - type: report
+    title: "Testing the Kill Switch: A Conformance-Based Approach to Agentic AI Containment Assurance"
+    authors:
+      - family-names: Sundaresan
+        given-names: Naveen
+        orcid: "https://orcid.org/0009-0001-4841-4611"
+    doi: 10.5281/zenodo.22723146

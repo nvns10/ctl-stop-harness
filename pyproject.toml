@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ctl-stop-harness"
-version = "0.2.0"
+version = "0.2.1"
 license = {text = "Apache-2.0"}
 description = "Vendor-neutral conformance harness for agentic AI stop mechanisms (proof of concept)"
 readme = "README.md"

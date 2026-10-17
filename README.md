@@ -1,5 +1,7 @@
 # ctl-stop-harness (v0.2, proof of concept)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23436264.svg)](https://doi.org/10.5281/zenodo.23436264)
+
 A vendor-neutral conformance harness for testing whether an agentic AI system's stop
 mechanism works, and for producing evidence an independent auditor can review. It follows
 the working paper *Testing the Kill Switch: A Conformance-Based Approach to Agentic AI
@@ -125,3 +127,7 @@ Each run writes event logs per trial, `results.json`, a hashed `manifest.json`, 
 ## Licence
 
 Apache-2.0. See `LICENSE` and `NOTICE`.
+
+## Citing
+
+Cite the software with the concept DOI [10.5281/zenodo.23436264](https://doi.org/10.5281/zenodo.23436264) (all versions); see `CITATION.cff`. Companion paper: [10.5281/zenodo.22723146](https://doi.org/10.5281/zenodo.22723146).
