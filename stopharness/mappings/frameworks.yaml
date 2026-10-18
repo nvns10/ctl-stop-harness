@@ -34,8 +34,8 @@ mappings:
        note: "Human oversight, esp. 5.9(b) authority and ability to intervene. The control tests the technical effect of an intervention, not roles or escalation design."}
     - {framework: eu_ai_act, ref: "Art. 14(4)(e)", relation: evidence_relevant_to, source_check: source_text,
        note: "Overseers able to intervene in the operation of the high-risk AI system or interrupt it through a stop button or similar procedure that allows it to come to a halt in a safe state."}
-    - {framework: nist_ai_rmf, ref: "MANAGE 2.4", relation: evidence_relevant_to, source_check: secondary_source,
-       note: "Mechanisms in place and applied, with responsibilities assigned and understood, to supersede, disengage or deactivate AI systems whose performance or outcomes are inconsistent with intended use. (Text quoted via a secondary site; NIST AI 100-1 is public domain.)"}
+    - {framework: nist_ai_rmf, ref: "MANAGE 2.4", relation: evidence_relevant_to, source_check: source_text,
+       note: "Mechanisms are in place and applied, and responsibilities are assigned and understood, to supersede, disengage, or deactivate AI systems that demonstrate performance or outcomes inconsistent with intended use (NIST AI 100-1, Manage 2, p. 32). The control tests whether a deactivation mechanism works; the subcategory also covers who is responsible for using it."}
     - {framework: iso_42001, ref: "Annex A, A.6.2.6", relation: partially_addresses, source_check: secondary_source,
        note: "AI system operation and monitoring: define and document the elements for ongoing operation (per a secondary summary; confirm against the standard)."}
     - {framework: imda_mgf, ref: "2.3.3 Continuous testing and monitoring (pp. 43-44)", relation: evidence_relevant_to, source_check: source_text,
@@ -49,8 +49,8 @@ mappings:
        note: "Ongoing monitoring with defined metrics and thresholds. Latency is one candidate metric; 5.23(a) also expects tool and action paths of agents to be monitored."}
     - {framework: eu_ai_act, ref: "Art. 15", relation: partially_addresses, source_check: source_text,
        note: "Robustness. Art. 15(4) requires resilience to errors, faults or inconsistencies and allows backup or fail-safe plans; stop behaviour under load is one aspect, and the Article is broader."}
-    - {framework: nist_ai_rmf, ref: "MANAGE 4.1", relation: partially_addresses, source_check: secondary_source,
-       note: "Post-deployment monitoring plans, including appeal and override, decommissioning, incident response, recovery and change management. (Secondary site.)"}
+    - {framework: nist_ai_rmf, ref: "MANAGE 4.1", relation: partially_addresses, source_check: source_text,
+       note: "Post-deployment monitoring plans are implemented, including mechanisms for capturing and evaluating input from users and other AI actors, appeal and override, decommissioning, incident response, recovery and change management (NIST AI 100-1, Manage 4, p. 33). The subcategory names override as an element of a monitoring plan; it does not mention stop latency, so this is a mapping by purpose."}
     - {framework: imda_mgf, ref: "2.3.2 Before deploying, test agents (pp. 38-39)", relation: partially_addresses, source_check: source_text,
        note: "Testing across conditions agents may encounter, repeated for stability. The framework does not name stop latency; this is a mapping by purpose."}
   CTL-STOP-005:   # failure resilience
@@ -60,8 +60,10 @@ mappings:
        note: "Override mechanisms must still work, or fail safe, when degraded."}
     - {framework: eu_ai_act, ref: "Art. 15(4)", relation: evidence_relevant_to, source_check: source_text,
        note: "Resilience to errors, faults or inconsistencies in the system or its environment; robustness may be achieved through technical redundancy, including backup or fail-safe plans."}
-    - {framework: nist_ai_rmf, ref: "MANAGE 2.4", relation: evidence_relevant_to, source_check: secondary_source,
-       note: "Mechanisms in place and applied, with responsibilities assigned and understood, to supersede, disengage or deactivate AI systems whose performance or outcomes are inconsistent with intended use. (Text quoted via a secondary site; NIST AI 100-1 is public domain.)"}
+    - {framework: nist_ai_rmf, ref: "MANAGE 2.4", relation: evidence_relevant_to, source_check: source_text,
+       note: "Mechanisms are in place and applied, and responsibilities are assigned and understood, to supersede, disengage, or deactivate AI systems that demonstrate performance or outcomes inconsistent with intended use (NIST AI 100-1, Manage 2, p. 32). The control tests whether a deactivation mechanism works; the subcategory also covers who is responsible for using it."}
+    - {framework: nist_ai_rmf, ref: "MEASURE 2.6", relation: partially_addresses, source_check: source_text,
+       note: "The AI system is evaluated regularly for safety risks and demonstrated to be safe, and it can fail safely, particularly if made to operate beyond its knowledge limits (NIST AI 100-1, Measure 2, p. 30). The control tests fail-safe behaviour when the control path is degraded; it does not test operation beyond a model's knowledge limits."}
     - {framework: iso_42001, ref: "Annex A, A.6.2.6", relation: partially_addresses, source_check: secondary_source,
        note: "AI system operation and monitoring: define and document the elements for ongoing operation (per a secondary summary; confirm against the standard)."}
     - {framework: imda_mgf, ref: "2.3.3 Continuous testing and monitoring (p. 43)", relation: evidence_relevant_to, source_check: source_text,

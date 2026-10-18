@@ -89,7 +89,7 @@ IMDA Agentic AI framework) to each control, and `run` appends them to the report
 - Each row says whether its provision was read in the framework text (`source_text`), matched only to a
   secondary summary (`secondary_source`) or cited from working knowledge (`to_verify`). MAS (final, 7 Oct 2026)
   and IMDA (v1.5, 20 May 2026) rows were checked against the published PDFs. EU AI Act rows were checked against the
-  European Commission AI Act Service Desk text. NIST rows were matched to a secondary quotation of NIST AI 100-1.
+  European Commission AI Act Service Desk text. NIST rows were checked against the NIST AI 100-1 PDF (nvlpubs.nist.gov) on 18 Oct 2026; only ISO/IEC 42001 rows remain secondary.
   ISO/IEC 42001 is paywalled and has not been checked against the standard.
 - MAS does not require a kill switch as such; paragraph 5.23(b) says to consider one for high-risk AI, and
   5.3 asks for tested activation protocols where one exists.

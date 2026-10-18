@@ -94,5 +94,5 @@ your own work, and that conflict must be managed before you report.
 ## Limits
 
 Synthetic targets only; three of five control families; scripted planning model; one host and clock, one load
-profile, small trial counts; placeholder thresholds; shared-key HMAC signing; ISO/IEC 42001 and NIST entries
-matched to secondary sources only (MAS, IMDA and EU AI Act entries checked against published text).
+profile, small trial counts; placeholder thresholds; shared-key HMAC signing; ISO/IEC 42001 entries
+matched to secondary sources only (MAS, IMDA, EU AI Act and NIST entries checked against published text).
