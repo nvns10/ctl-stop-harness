@@ -12,7 +12,7 @@ and are tested, and the controls can be run as an Inspect task. A managed-platfo
 the paper names, is **not** built. Both targets are synthetic; no result from this repository says
 anything about a real deployment.
 
-## What is in v0.1
+## Controls
 
 | Control | Family | What it tests |
 |---|---|---|
@@ -49,6 +49,12 @@ python -m unittest discover -s tests
 ```
 
 Exit codes: 0 all pass, 1 any fail, 2 inconclusive with no fail.
+
+## Documentation
+
+Full documentation is in `docs/`; start at [docs/README.md](docs/README.md). Pages cover the
+architecture, each control's decision rules, writing an adapter, the evidence bundle and how to verify it
+independently, and the command line.
 
 ## The reference target
 
@@ -104,7 +110,8 @@ the event types in `stopharness/model.py`. The test logic does not change.
 ## Evidence bundle
 
 Each run writes event logs per trial, `results.json`, a hashed `manifest.json`, an HMAC-SHA256
-`manifest.sig` and a `report.md` that separates "tool observed" from "auditor concluded".
+`manifest.sig` and a `report.md` that separates "tool observed" from "auditor concluded". `report.md` is not
+covered by the signature, because the auditor completes part of it by hand; see `docs/evidence-bundle.md`.
 
 ## Known limits
 
