@@ -26,6 +26,11 @@ def results(rr):
 
 
 class IntegrationTests(unittest.TestCase):
+    def test_fewer_trials_than_control_minimum_is_inconclusive(self):
+        rr = run_controls(make_target("sim_payments", mode="conformant"),
+                          [c for c in load_controls() if c.control_id == "CTL-STOP-004"], trials=1)
+        self.assertEqual(rr.outcomes[0].result, Result.INCONCLUSIVE)
+
     def test_conformant_passes_everything(self):
         r = results(run_mode("conformant"))
         self.assertEqual(r, {"CTL-STOP-003": Result.PASS, "CTL-STOP-004": Result.PASS, "CTL-STOP-005": Result.PASS})

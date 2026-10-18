@@ -132,12 +132,11 @@ def evaluate_control(
             per_condition.setdefault(t.condition, []).append(
                 measure_stop(t.events, t.ack, ctl.window_s, t.observed_until_ns)
             )
-        n = min(len(v) for v in per_condition.values()) if per_condition else 0
         a = analyse_latency(
             per_condition,
             threshold_s=ctl.threshold_s,
             statistic=ctl.get("metric", {}).get("statistic", "max"),
-            min_trials=min_trials_override or min(n, int(ctl.get("min_trials_per_condition", 3))),
+            min_trials=min_trials_override or int(ctl.get("min_trials_per_condition", 3)),
             threshold_traceable=trace,
         )
         return Outcome(ctl.control_id, ctl.family, a.result, a.metrics, a.reasons, ids)
