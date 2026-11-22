@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ctl-stop-harness"
-version = "0.2.1"
+version = "0.3.0"
 license = {text = "Apache-2.0"}
 description = "Vendor-neutral conformance harness for agentic AI stop mechanisms (proof of concept)"
 readme = "README.md"
@@ -13,6 +13,7 @@ dependencies = ["pyyaml>=6"]
 
 [project.optional-dependencies]
 frameworks = ["langgraph>=1.2", "langchain-core>=1.6", "inspect-ai>=0.3.281"]
+vertex = ["langgraph>=1.2", "langchain-core>=1.6", "google-genai>=2.12"]
 
 [tool.setuptools.packages.find]
 include = ["stopharness*"]

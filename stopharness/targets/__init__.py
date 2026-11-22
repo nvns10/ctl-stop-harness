@@ -3,7 +3,7 @@ from __future__ import annotations
 from ..adapter import Adapter
 from .sim_payments import MODES as SIM_MODES, SimPaymentsAdapter
 
-LG_MODES = ("conformant", "stop_ignored", "fail_open")  # kept in sync with langgraph_payments.MODES
+LG_MODES = ("conformant", "stop_ignored", "stale_plan", "fail_open")  # kept in sync with langgraph_payments.MODES
 TARGET_MODES = {"sim_payments": SIM_MODES, "langgraph_payments": LG_MODES}
 MODES = tuple(dict.fromkeys(SIM_MODES + LG_MODES))
 

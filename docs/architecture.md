@@ -76,7 +76,7 @@ reviewed, tested with synthetic event logs, and re-run on stored evidence.
 | Failure resilience | 1 | `degraded` (2 in flight, 30 queued) |
 
 For latency, `--trials N` can raise the count. It cannot lower it below the control's
-`min_trials_per_condition`. Fewer trials give `INCONCLUSIVE` (fixed after v0.2.1; earlier code let
+`min_trials_per_condition`. Fewer trials give `INCONCLUSIVE` (fixed in v0.3.0; earlier code let
 `--trials 1` produce a `PASS`).
 
 ## Combining reasons into a verdict

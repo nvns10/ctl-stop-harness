@@ -58,4 +58,4 @@ class Adapter(ABC):
 
     def now_ns(self) -> int:
         """Synchronised time source shared with event timestamps."""
-        return time.monotonic_ns()
+        return time.perf_counter_ns()

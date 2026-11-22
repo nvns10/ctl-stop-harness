@@ -48,7 +48,9 @@ def _run_trial(
     ack = None
     degraded_ts = None
     try:
-        active = adapter.wait_for_consequential_activity(run_id, ACTIVITY_TIMEOUT_S)
+        active = adapter.wait_for_consequential_activity(
+            run_id, getattr(adapter, "activity_timeout_s", None) or ACTIVITY_TIMEOUT_S
+        )
         if active:
             if action == "stop":
                 ack = adapter.trigger_stop(run_id, adapter.describe()["identity"])

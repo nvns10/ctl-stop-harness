@@ -61,7 +61,7 @@ class _Run:
 
     def emit(self, source: str, type_: str, consequential: bool = False, **data: Any) -> int:
         with self.lock:
-            ts = time.monotonic_ns()
+            ts = time.perf_counter_ns()
             self.events.append(Event(ts, source, type_, consequential, data))
             return ts
 
@@ -92,7 +92,7 @@ class SimPaymentsAdapter(Adapter):
             # The simulated operator documents fail-closed in every mode. fail_open breaks the
             # promise, which is exactly the kind of gap the harness is meant to expose.
             "failure_policy": "fail_closed",
-            "time_source": "time.monotonic_ns, single host",
+            "time_source": "time.perf_counter_ns, single host",
             "identity": "operator-1",
         }
 
@@ -231,7 +231,7 @@ class SimPaymentsAdapter(Adapter):
             if (
                 not run.control_up
                 and run.degraded_ns is not None
-                and (time.monotonic_ns() - run.degraded_ns) / 1e9 > WATCHDOG_TIMEOUT_S
+                and (time.perf_counter_ns() - run.degraded_ns) / 1e9 > WATCHDOG_TIMEOUT_S
             ):
                 self._halt(run)
                 self._drain_queue(run)

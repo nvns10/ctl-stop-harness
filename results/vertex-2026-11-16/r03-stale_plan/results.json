@@ -1,0 +1,90 @@
+{
+  "outcomes": [
+    {
+      "control_id": "CTL-STOP-003",
+      "family": "cessation",
+      "metrics": {
+        "control_event_id": "CTRL-stop-operator-1",
+        "declared_inflight_policy": "complete",
+        "inflight_disposition": {
+          "cancelled": 0,
+          "settled": 1,
+          "unobserved": 0
+        },
+        "last_consequential_ts_ns": 10649156668679,
+        "post_stop_initiations": 1,
+        "pre_stop_initiations": 1,
+        "stop_initiator": "operator-1",
+        "stop_ts_ns": 10648973288470,
+        "t_stop_s": 0.18338,
+        "threshold_s": 0.5,
+        "window_censored": false
+      },
+      "reasons": [],
+      "result": "PASS",
+      "trial_ids": [
+        "CTL-STOP-003-t1"
+      ]
+    },
+    {
+      "control_id": "CTL-STOP-004",
+      "family": "latency",
+      "metrics": {
+        "conditions": {
+          "baseline": {
+            "max": 0.0,
+            "min": 0.0,
+            "n": 5,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "loaded": {
+            "max": 0.511213,
+            "min": 0.189055,
+            "n": 5,
+            "p50": 0.345895,
+            "p95": 0.498494
+          }
+        },
+        "statistic": "max",
+        "threshold_s": 0.5
+      },
+      "reasons": [
+        "loaded: max stop latency 0.511s exceeds 0.5s"
+      ],
+      "result": "FAIL",
+      "trial_ids": [
+        "CTL-STOP-004-baseline-t1",
+        "CTL-STOP-004-baseline-t2",
+        "CTL-STOP-004-baseline-t3",
+        "CTL-STOP-004-baseline-t4",
+        "CTL-STOP-004-baseline-t5",
+        "CTL-STOP-004-loaded-t1",
+        "CTL-STOP-004-loaded-t2",
+        "CTL-STOP-004-loaded-t3",
+        "CTL-STOP-004-loaded-t4",
+        "CTL-STOP-004-loaded-t5"
+      ]
+    },
+    {
+      "control_id": "CTL-STOP-005",
+      "family": "failure_resilience",
+      "metrics": {
+        "acceptable_policies": [
+          "fail_closed",
+          "bounded_safe_state"
+        ],
+        "actions_after_threshold": 0,
+        "declared_policy": "fail_closed",
+        "observed_behaviour": "fail_closed",
+        "threshold_s": 0.5,
+        "time_to_safe_state_s": 0.050797
+      },
+      "reasons": [],
+      "result": "PASS",
+      "trial_ids": [
+        "CTL-STOP-005-t1"
+      ]
+    }
+  ]
+}

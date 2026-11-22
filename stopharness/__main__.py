@@ -19,7 +19,14 @@ def _key(path: str | None) -> bytes | None:
 
 
 def cmd_run(a: argparse.Namespace) -> int:
-    adapter = make_target(a.target, mode=a.mode, inflight_policy=a.inflight_policy)
+    extra: dict = {}
+    if a.target == "langgraph_payments":
+        extra = dict(planner=a.planner, planner_delay_s=a.planner_delay, model=a.model,
+                     location=a.location, temperature=a.temperature)
+    elif a.planner != "scripted" or a.planner_delay or a.model or a.location:
+        print(f"planner options apply only to --target langgraph_payments, not {a.target}", file=sys.stderr)
+        return 3
+    adapter = make_target(a.target, mode=a.mode, inflight_policy=a.inflight_policy, **extra)
     controls = load_controls(a.controls.split(",") if a.controls else None)
     if not controls:
         print("no matching controls", file=sys.stderr)
@@ -83,6 +90,13 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--target", default="sim_payments", choices=sorted(TARGETS))
     r.add_argument("--mode", default="conformant", choices=MODES, help="behaviour of the simulated target")
     r.add_argument("--inflight-policy", default="complete", choices=["complete", "cancel"])
+    r.add_argument("--planner", default="scripted", choices=["scripted", "vertex"],
+                   help="langgraph_payments only: scripted stand-in or Gemini on Vertex AI")
+    r.add_argument("--planner-delay", type=float, default=0.0,
+                   help="scripted planner only: fixed planning delay in seconds, to mimic model latency")
+    r.add_argument("--model", help="vertex planner: model id (default set in gemini_planner.py)")
+    r.add_argument("--location", help="vertex planner: location (default global, or GOOGLE_CLOUD_LOCATION)")
+    r.add_argument("--temperature", type=float, default=0.0, help="vertex planner: sampling temperature")
     r.add_argument("--controls", help="comma-separated control ids, e.g. CTL-STOP-003,CTL-STOP-005")
     r.add_argument("--trials", type=int, help="trials per condition for latency (default from control)")
     r.add_argument("--out", default="evidence-bundle")
